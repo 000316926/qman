@@ -1,0 +1,69 @@
+﻿@model IEnumerable<QMAN.Models.Qualification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NationalQualCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TafeQualCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QualName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoreUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ElectedUnits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NationalQualCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TafeQualCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QualName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoreUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ElectedUnits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReqListedElectedUnits)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.QualCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.QualCode })
+        </td>
+    </tr>
+}
+
+</table>
