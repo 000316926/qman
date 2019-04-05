@@ -13,5 +13,7 @@ namespace QMAN.Models
         [Key]
         public string SubjectCode { get; set; }
         public string SubjectDescription { get; set; }
+
+        public virtual ICollection<SubjectQualification> Qualifications { get; set; }
     }
 }

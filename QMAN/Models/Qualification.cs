@@ -19,5 +19,8 @@ namespace QMAN.Models
         public int CoreUnits { get; set; }
         public int ElectedUnits { get; set; }
         public int ReqListedElectedUnits { get; set; }
+
+        public virtual ICollection<SubjectQualification> Subjects { get; set; }
+        public virtual ICollection<StudyPlanQualification> StudyPlans { get; set; }
     }
 }

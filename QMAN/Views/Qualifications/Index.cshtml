@@ -1,26 +1,36 @@
 ﻿@model IEnumerable<QMAN.Models.Qualification>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Qualifications";
 }
 
-<h2>Index</h2>
+<h2>Qualifications</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
-    <tr>
+    <tr>        
         <th>
-            @Html.DisplayNameFor(model => model.NationalQualCode)
+            Qualification Name
+            @*@Html.DisplayNameFor(model => model.QualName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TafeQualCode)
+            National Qualification Code
+            @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.QualName)
+            TAFE Qualification Code
+            @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.TotalUnits)
         </th>
         <th>
@@ -31,22 +41,22 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.QualName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.NationalQualCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TafeQualCode)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QualName)
-        </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.TotalUnits)
         </td>
         <td>
@@ -57,11 +67,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ReqListedElectedUnits)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |
-            @Html.ActionLink("Details", "Details", new { id=item.QualCode }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.QualCode })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.QualCode })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.QualCode })*@
         </td>
     </tr>
 }

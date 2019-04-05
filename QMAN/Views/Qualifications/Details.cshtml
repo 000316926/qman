@@ -34,7 +34,7 @@
             @Html.DisplayFor(model => model.QualName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.TotalUnits)
         </dt>
 
@@ -64,9 +64,35 @@
 
         <dd>
             @Html.DisplayFor(model => model.ReqListedElectedUnits)
-        </dd>
+        </dd>*@
 
     </dl>
+</div>
+<div>
+    <fieldset>
+        <legend>Subjects</legend>
+
+        <table class="table">
+            <tr>
+                <th>Subject</th>
+            </tr>
+
+            @if (Model.Subjects.Count > 0)
+            {
+                foreach (var subject in Model.Subjects)
+                {
+                    <tr>
+                        <td>@subject.Subject.SubjectDescription</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <h2>No Subjects</h2>
+            }
+        </table>
+
+    </fieldset>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.QualCode }) |
