@@ -73,7 +73,7 @@
 </div>
 <div>
     <fieldset>
-        <legend>Subjects</legend>
+        <legend>Subjects & Competencies</legend>
 
         <table class="table">
             <tr>
@@ -89,35 +89,14 @@
                         <td>@subject.Subject.SubjectCode</td>
                         <td>@subject.Subject.SubjectDescription</td>
                     </tr>
-                }
-            }
-            else
-            {
-                <h2>No Subjects</h2>
-            }
-        </table>
 
-    </fieldset>
-    <fieldset>
-        <legend>Competencies</legend>
-
-        <table class="table">
-            <tr>
-                <th>Competency Code</th>
-                <th>Competency Name</th>
-            </tr>
-
-            @if (Model.Subjects.Count > 0)
-            {
-                foreach (var subject in Model.Subjects)
-                {
                     if (subject.Subject.Competencies.Count > 0)
                     {
                         foreach (var competency in subject.Subject.Competencies)
                         {
                             <tr>
-                                <td>@competency.TafeCompCode</td>
-                                <td>@competency.Competency.CompetencyName</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;@competency.TafeCompCode</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;@competency.Competency.CompetencyName</td>
                             </tr>
                         }
                     }
@@ -125,7 +104,7 @@
             }
             else
             {
-                <h2>No Competencies</h2>
+                < h2 > No Subjects </ h2 >
             }
         </table>
 
