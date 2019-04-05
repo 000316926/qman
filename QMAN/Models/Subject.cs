@@ -15,5 +15,6 @@ namespace QMAN.Models
         public string SubjectDescription { get; set; }
 
         public virtual ICollection<SubjectQualification> Qualifications { get; set; }
+        public virtual ICollection<SubjectCompetency> Competencies { get; set; }
     }
 }

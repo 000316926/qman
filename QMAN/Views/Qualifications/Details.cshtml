@@ -11,7 +11,17 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NationalQualCode)
+            @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
+            Qualification
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QualName)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayFor(model => model.QualName)*@
+            National Code
         </dt>
 
         <dd>
@@ -19,21 +29,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TafeQualCode)
+            @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
+            TAFE Qualification Code
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TafeQualCode)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QualName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QualName)
-        </dd>
-
+        
         @*<dt>
             @Html.DisplayNameFor(model => model.TotalUnits)
         </dt>
@@ -74,7 +77,8 @@
 
         <table class="table">
             <tr>
-                <th>Subject</th>
+                <th>Subject Code</th>
+                <th>Subject Name</th>
             </tr>
 
             @if (Model.Subjects.Count > 0)
@@ -82,6 +86,7 @@
                 foreach (var subject in Model.Subjects)
                 {
                     <tr>
+                        <td>@subject.Subject.SubjectCode</td>
                         <td>@subject.Subject.SubjectDescription</td>
                     </tr>
                 }
@@ -89,6 +94,38 @@
             else
             {
                 <h2>No Subjects</h2>
+            }
+        </table>
+
+    </fieldset>
+    <fieldset>
+        <legend>Competencies</legend>
+
+        <table class="table">
+            <tr>
+                <th>Competency Code</th>
+                <th>Competency Name</th>
+            </tr>
+
+            @if (Model.Subjects.Count > 0)
+            {
+                foreach (var subject in Model.Subjects)
+                {
+                    if (subject.Subject.Competencies.Count > 0)
+                    {
+                        foreach (var competency in subject.Subject.Competencies)
+                        {
+                            <tr>
+                                <td>@competency.TafeCompCode</td>
+                                <td>@competency.Competency.CompetencyName</td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            else
+            {
+                <h2>No Competencies</h2>
             }
         </table>
 

@@ -15,5 +15,7 @@ namespace QMAN.Models
         public string NationalCompCode { get; set; }
         public string CompetencyName { get; set; }
         public int Hours { get; set; }
+
+        public virtual ICollection<SubjectCompetency> Subjects { get; set; }
     }
 }
