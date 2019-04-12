@@ -120,6 +120,33 @@ namespace QMAN.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteSubject(string QualCode, string SubjectCode)
+        {
+            if (QualCode == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Qualification qualification = db.Qualifications.Find(QualCode);
+            if (qualification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(qualification);
+        }
+
+        [HttpPost, ActionName("DeleteSubject")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSubjectConfirmed(string QualCode, string SubjectCode)
+        {
+            Qualification qualification = db.Qualifications.Find(QualCode);
+            SubjectQualification subject = qualification.Subjects.First(s => s.SubjectCode == SubjectCode);
+
+            db.Qualifications.Find(QualCode).Subjects.Remove(subject);
+
+            db.SaveChanges();
+            return RedirectToAction("Edit", "Qualifications", new { id = QualCode } );
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
