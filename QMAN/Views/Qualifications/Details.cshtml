@@ -87,16 +87,18 @@
                 {
                     <tr>
                         <td>@subject.Subject.SubjectCode</td>
+                        <td></td>
                         <td>@subject.Subject.SubjectDescription</td>
+
                     </tr>
 
                     if (subject.Subject.Competencies.Count > 0)
                     {
                         foreach (var competency in subject.Subject.Competencies)
                         {
-                            <tr>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;@competency.TafeCompCode</td>
-                                <td>&nbsp;&nbsp;&nbsp;&nbsp;@competency.Competency.CompetencyName</td>
+                            <tr class="comp">
+                                <td class="comp">@competency.TafeCompCode</td>                                
+                                <td class="comp">@competency.Competency.CompetencyName</td>
                             </tr>
                         }
                     }

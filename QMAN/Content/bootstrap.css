@@ -1428,6 +1428,12 @@ th {
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
+  background-color: burlywood;
+}
+.table tbody > tr > td.comp {
+    padding-left: 20px;
+    /*margin-left: 50px;*/
+    background-color: lightyellow;
 }
 
 .table thead > tr > th {
