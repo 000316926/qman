@@ -77,29 +77,36 @@
 
         <table class="table">
             <tr>
-                <th>Subject Code</th>
-                <th>Subject Name</th>
+                <th width="200px">Subject/Comp Code</th>                
+                <th>Subject/Comp Name</th>
+                <th>Type</th>
             </tr>
 
             @if (Model.Subjects.Count > 0)
             {
                 foreach (var subject in Model.Subjects)
                 {
-                    <tr>
-                        <td>@subject.Subject.SubjectCode</td>
-                        <td></td>
-                        <td>@subject.Subject.SubjectDescription</td>
-
+                    <tr class="subject">
+                        <td class="subject" width="200px">@subject.Subject.SubjectCode</td>
+                        <td class="subject">@subject.Subject.SubjectDescription</td>
+                        <td class="subject">@subject.CompTypeCode</td>
                     </tr>
 
                     if (subject.Subject.Competencies.Count > 0)
                     {
                         foreach (var competency in subject.Subject.Competencies)
                         {
-                            <tr class="comp">
-                                <td class="comp">@competency.TafeCompCode</td>                                
-                                <td class="comp">@competency.Competency.CompetencyName</td>
+                            <tr style="padding:0px;">
+                                <td colspan="3" style="padding:0px;">
+                                    <table class="table" style="margin-bottom:0px;">
+                                        <tr class="comp">
+                                            <td class="comp" width="200px">@competency.TafeCompCode</td>
+                                            <td class="comp">@competency.Competency.CompetencyName</td>
+                                        </tr>
+                                    </table>
+                                </td>
                             </tr>
+                            
                         }
                     }
                 }

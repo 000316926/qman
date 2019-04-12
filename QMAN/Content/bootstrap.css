@@ -611,7 +611,7 @@ dd {
 @media (min-width: 768px) {
   .dl-horizontal dt {
     float: left;
-    width: 160px;
+    width: 200px;
     overflow: hidden;
     clear: left;
     text-align: right;
@@ -619,7 +619,7 @@ dd {
     white-space: nowrap;
   }
   .dl-horizontal dd {
-    margin-left: 180px;
+    margin-left: 220px;
   }
   .dl-horizontal dd:before,
   .dl-horizontal dd:after {
@@ -1428,10 +1428,12 @@ th {
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
-  background-color: burlywood;
+}
+.table tbody > tr > td.subject {
+    background-color: goldenrod;
 }
 .table tbody > tr > td.comp {
-    padding-left: 20px;
+    padding-left: 35px;
     /*margin-left: 50px;*/
     background-color: lightyellow;
 }
