@@ -19,10 +19,14 @@ namespace QMAN.Controllers
         {
             if(!String.IsNullOrEmpty(searchString))
             {
-                return View(db.Qualifications.Where(q => q.QualName.Contains(searchString)).ToList<Qualification>());
+                ViewResult vr1 = View(db.Qualifications.Where(q => q.QualName.Contains(searchString)).ToList<Qualification>());
+                vr1.ViewName = "Index";
+                return vr1;
             }
 
-            return View(db.Qualifications.ToList());
+            ViewResult vr2 = View(db.Qualifications.ToList());
+            //vr2.ViewName = "Index"; // - FORCE FAILURE FOR TEST
+            return vr2;
         }
 
         // GET: Qualifications/Details/5

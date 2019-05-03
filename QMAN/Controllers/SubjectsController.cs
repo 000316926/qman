@@ -17,7 +17,9 @@ namespace QMAN.Controllers
         // GET: Subjects
         public ActionResult Index()
         {
-            return View(db.Subjects.ToList());
+            ViewResult vr = View(db.Subjects.ToList());
+            vr.ViewName = "Index";
+            return vr;
         }
 
         // GET: Subjects/Details/5
