@@ -7,73 +7,86 @@
 <h2>Qualifications</h2>
 
 @*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>*@
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 @using (Html.BeginForm())
 {
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
+<div class="row">
+    <div class="input-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+        @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Find by Name" })
+        <span class="input-group-btn ">
+            <button class="btn btn-danger" type="submit">Button</button>
+        </span>
+    </div>
+</div>
+    @*<p>
+        Find by name: @Html.TextBox("SearchString", new { @class = "form-control" })
+        <button class=" btn btn-danger" type="submit">Search</button>
+
+    </p>*@
 }
 <table class="table">
-    <tr>        
-        <th>
-            Qualification Name
-            @*@Html.DisplayNameFor(model => model.QualName)*@
-        </th>
-        <th>
-            National Qualification Code
-            @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
-        </th>
-        <th>
-            TAFE Qualification Code
-            @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.TotalUnits)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoreUnits)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ElectedUnits)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
-        </th>*@
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.QualName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NationalQualCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TafeQualCode)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.TotalUnits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoreUnits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ElectedUnits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReqListedElectedUnits)
-        </td>*@
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |*@
-            @Html.ActionLink("Details", "Details", new { id=item.QualCode })
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.QualCode })*@
-        </td>
-    </tr>
-}
+            <th class="">
+                Qualification Name
+                @*@Html.DisplayNameFor(model => model.QualName)*@
+            </th>
+            <th>
+                National Qualification Code
+                @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
+            </th>
+            <th>
+                TAFE Qualification Code
+                @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.TotalUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoreUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ElectedUnits)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
+            </th>*@
+            <th></th>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalQualCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TafeQualCode)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.TotalUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoreUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ElectedUnits)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReqListedElectedUnits)
+                </td>*@
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.QualCode }, new {@class = "btn btn-danger" })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.QualCode })*@
+            </td>
+        </tr>
+    }
 
 </table>
