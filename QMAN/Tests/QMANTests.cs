@@ -18,7 +18,7 @@ namespace QMAN.Tests
         {
             var obj = new QualificationsController();
 
-            var result = obj.Index("") as ViewResult;
+            var result = obj.Index("", "") as ViewResult;
 
             var expected = "Index";
 
@@ -30,7 +30,7 @@ namespace QMAN.Tests
         {
             var obj = new SubjectsController();
 
-            var result = obj.Index() as ViewResult;
+            var result = obj.Index("", "") as ViewResult;
 
             var expected = "Index";
 

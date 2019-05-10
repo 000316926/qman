@@ -15,18 +15,45 @@ namespace QMAN.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Qualifications
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string sortOrder)
         {
-            if(!String.IsNullOrEmpty(searchString))
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.Code1Parm = sortOrder == "NationalCode" ? "natcode_desc" : "NationalCode";
+            ViewBag.Code2Parm = sortOrder == "TafeCode" ? "tafecode_desc" : "TafeCode";
+
+            IEnumerable<Qualification> quals = db.Qualifications;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                ViewResult vr1 = View(db.Qualifications.Where(q => q.QualName.Contains(searchString)).ToList<Qualification>());
-                vr1.ViewName = "Index";
-                return vr1;
+                quals = db.Qualifications.Where(q => q.QualName.Contains(searchString) || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));                
+                //quals = db.Qualifications.Where(q => q.QualName.Contains(searchString));// || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));
             }
 
-            ViewResult vr2 = View(db.Qualifications.ToList());
-            //vr2.ViewName = "Index"; // - FORCE FAILURE FOR TEST
-            return vr2;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    quals = quals.OrderByDescending(q => q.QualName);
+                    break;
+                case "natcode_desc":
+                    quals = quals.OrderByDescending(q => q.NationalQualCode);
+                    break;
+                case "NationalCode":
+                    quals = quals.OrderBy(q => q.NationalQualCode);
+                    break;
+                case "tafecode_desc":
+                    quals = quals.OrderByDescending(q => q.TafeQualCode);
+                    break;
+                case "TafeCode":
+                    quals = quals.OrderBy(q => q.TafeQualCode);
+                    break;
+                default:
+                    quals = quals.OrderBy(q => q.QualName);
+                    break;
+            }
+
+            ViewResult vr1 = View(quals.ToList<Qualification>());
+            //vr1.ViewName = "Index"; // - FORCE FAILURE FOR TEST
+            return vr1;
         }
 
         // GET: Qualifications/Details/5

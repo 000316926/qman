@@ -16,5 +16,6 @@ namespace QMAN.Models
 
         public virtual ICollection<SubjectQualification> Qualifications { get; set; }
         public virtual ICollection<SubjectCompetency> Competencies { get; set; }
+        public virtual ICollection<CrnDetail> CrnDetails { get; set; }
     }
 }

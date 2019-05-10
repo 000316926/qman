@@ -6,19 +6,37 @@
 
 <h2>Index</h2>
 
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="input-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Search" })
+            <span class="input-group-btn ">
+                <button class="btn btn-danger" type="submit">Search</button>
+            </span>
+        </div>
+    </div>
+}
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Subject", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.SubjectDescription)
+            @Html.ActionLink("Subject Code", "Index", new { sortOrder = ViewBag.CodeSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Subject Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm })
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectCode)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.SubjectDescription)
         </td>

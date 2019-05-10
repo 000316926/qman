@@ -33,5 +33,7 @@ namespace QMAN.Models
         public System.Data.Entity.DbSet<QMAN.Models.Qualification> Qualifications { get; set; }
 
         public System.Data.Entity.DbSet<QMAN.Models.Subject> Subjects { get; set; }
+
+        public System.Data.Entity.DbSet<QMAN.Models.StudyPlanQualification> StudyPlanQualifications { get; set; }
     }
 }

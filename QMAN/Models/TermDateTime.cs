@@ -17,5 +17,7 @@ namespace QMAN.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int SemesterCode { get; set; }
+
+        public virtual ICollection<StudentStudyPlan> StudentStudyPlans { get; set; }
     }
 }

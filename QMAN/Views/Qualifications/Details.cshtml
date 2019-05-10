@@ -11,7 +11,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
             Qualification
         </dt>
 
@@ -20,7 +19,6 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayFor(model => model.QualName)*@
             National Code
         </dt>
 
@@ -29,92 +27,85 @@
         </dd>
 
         <dt>
-            @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
             TAFE Qualification Code
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TafeQualCode)
         </dd>
-        
-        @*<dt>
-            @Html.DisplayNameFor(model => model.TotalUnits)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalUnits)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CoreUnits)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CoreUnits)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ElectedUnits)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ElectedUnits)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReqListedElectedUnits)
-        </dd>*@
 
     </dl>
 </div>
 <div>
     <fieldset>
         <legend>Subjects & Competencies</legend>
-
         <table class="table">
             <tr>
-                <th width="200px">Subject/Comp Code</th>                
-                <th>Subject/Comp Name</th>
-                <th>Type</th>
-            </tr>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <th width="200px">Subject/Comp Code</th>
+                            <th>Subject/Comp Name</th>
+                            <th>Type</th>
+                        </tr>
 
-            @if (Model.Subjects.Count > 0)
+                        @if (Model.Subjects.Count > 0)
             {
                 foreach (var subject in Model.Subjects)
                 {
-                    <tr class="subject">
-                        <td class="subject" width="200px">@subject.Subject.SubjectCode</td>
-                        <td class="subject">@subject.Subject.SubjectDescription</td>
-                        <td class="subject">@subject.CompTypeCode</td>
-                    </tr>
+                                <tr class="subject">
+                                    <td class="subject" width="200px">@subject.Subject.SubjectCode</td>
+                                    <td class="subject">@subject.Subject.SubjectDescription</td>
+                                    <td class="subject">@subject.CompTypeCode</td>
+                                </tr>
 
-                    if (subject.Subject.Competencies.Count > 0)
-                    {
-                        foreach (var competency in subject.Subject.Competencies)
-                        {
-                            <tr style="padding:0px;">
-                                <td colspan="3" style="padding:0px;">
-                                    <table class="table" style="margin-bottom:0px;">
-                                        <tr class="comp">
-                                            <td class="comp" width="200px">@competency.TafeCompCode</td>
-                                            <td class="comp">@competency.Competency.CompetencyName</td>
+                                if (subject.Subject.Competencies.Count > 0)
+                                {
+                                    foreach (var competency in subject.Subject.Competencies)
+                                    {
+                                        <tr style="padding:0px;">
+                                            <td colspan="3" style="padding:0px;">
+                                                <table class="table" style="margin-bottom:0px;">
+                                                    <tr class="comp">
+                                                        <td class="comp" width="200px">@competency.TafeCompCode</td>
+                                                        <td class="comp">@competency.Competency.CompetencyName</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
                                         </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            
+
+                                    }
+                                }
+                            }
                         }
-                    }
-                }
-            }
-            else
-            {
-                < h2 > No Subjects </ h2 >
-            }
+                        else
+                        {
+                            <h2>No Subjects</h2>
+                        }
+                    </table>
+                </td>
+                <td>
+                    <table class="table">
+                        <tr>
+                            <th>Study Plan</th>
+                        </tr>
+
+                        @if (Model.StudyPlans.Count > 0)
+                        {
+                            foreach (var studyPlan in Model.StudyPlans)
+                            {
+                                <tr class="subject">
+                                    <td class="subject" width="200px">@studyPlan.StudyPlanCode</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <h2>No Study Plans</h2>
+                        }
+                    </table>
+                </td>
+            </tr>
         </table>
 
     </fieldset>

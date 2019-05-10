@@ -213,6 +213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QualificationsController.cs" />
+    <Compile Include="Controllers\StudyPlanController.cs" />
     <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -320,6 +321,11 @@
     <Content Include="Views\Subjects\Edit.cshtml" />
     <Content Include="Views\Subjects\Index.cshtml" />
     <Content Include="Views\Qualifications\DeleteSubject.cshtml" />
+    <Content Include="Views\StudyPlan\Create.cshtml" />
+    <Content Include="Views\StudyPlan\Delete.cshtml" />
+    <Content Include="Views\StudyPlan\Details.cshtml" />
+    <Content Include="Views\StudyPlan\Edit.cshtml" />
+    <Content Include="Views\StudyPlan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

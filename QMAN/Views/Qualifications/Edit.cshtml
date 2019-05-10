@@ -61,7 +61,30 @@
                     }
                     else
                     {
-                < h2 > No Subjects </ h2 >
+                <h2> No Subjects </h2>
+                    }
+                </table>
+
+                <table class="table">
+                    <tr>
+                        <th>Study Plan</th>
+                    </tr>
+
+                    @if (Model.StudyPlans.Count > 0)
+                    {
+                        foreach (var studyPlan in Model.StudyPlans)
+                        {
+                            <tr class="subject">
+                                <td class="subject" width="200px">@studyPlan.StudyPlanCode</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "StudyPlan", new { id = studyPlan.StudyPlanCode }, null)
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <h2>No Study Plans</h2>
                     }
                 </table>
 
