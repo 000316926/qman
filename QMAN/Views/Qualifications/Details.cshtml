@@ -38,10 +38,12 @@
 </div>
 <div>
     <fieldset>
+        
         <legend>Subjects & Competencies</legend>
         <table class="table">
             <tr>
                 <td>
+                    
                     <table class="table">
                         <tr>
                             <th width="200px">Subject/Comp Code</th>
@@ -49,20 +51,114 @@
                             <th>Type</th>
                         </tr>
 
-                        @if (Model.Subjects.Count > 0)
-            {
-                foreach (var subject in Model.Subjects)
-                {
-                                <tr class="subject">
-                                    <td class="subject" width="200px">@subject.Subject.SubjectCode</td>
-                                    <td class="subject">@subject.Subject.SubjectDescription</td>
-                                    <td class="subject">@subject.CompTypeCode</td>
-                                </tr>
 
+                        @if (Model.Subjects.Count > 0)
+                        {
+                            foreach (var subject in Model.Subjects)
+                            {
+
+                    <tr class="accordion" data-toggle="collapse" data-target="#AA_@(subject.SubjectCode)">
+                        
+                        <td class="card-header">
+                            
+                                @subject.Subject.SubjectCode
+                            
+                        </td>
+                        <td class="card-header">
+                            
+                                @subject.Subject.SubjectDescription
+                            
+                        </td>
+                        <td class="card-header">
+                            
+                                @subject.CompTypeCode
+                           
+                        </td>
+                        </tr>
                                 if (subject.Subject.Competencies.Count > 0)
                                 {
                                     foreach (var competency in subject.Subject.Competencies)
                                     {
+                        <tr class="hiddenRow">
+                            <td class="hiddenRow col-6">
+     
+                                    <table class="hiddenRow">
+                                        <tr>
+                                            <td>
+                                            <div class="accordion collapse card-body" id="AA_@(subject.SubjectCode)">
+                                                @competency.TafeCompCode</div></td>
+                                            <td>
+                                                <div class="accordion collapse card-body" id="AA_@(subject.SubjectCode)">
+                                                @competency.Competency.CompetencyName</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                
+                            </td>
+                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                            </table>
+                            </td>
+                            </tr>
+                            </table>
+                            </fieldset>
+    <script>
+        $('.table .accordian').on('show.bs.collapse', function () {
+               $(this).closest("table")
+                   .find(".collapse.in")
+                   .not(this)
+                   .collapse('toggle')
+        })
+    </script>
+                        @*<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                            <td class="subject" width="200px">@subject.Subject.SubjectCode</td>
+                            <td class="subject">@subject.Subject.SubjectDescription</td>
+                            <td class="subject">@subject.CompTypeCode</td>
+
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    @if (subject.Subject.Competencies.Count > 0)
+                                    {
+                                        foreach (var competency in subject.Subject.Competencies)
+                                        {
+<tr style="padding:0px;">
+                                    <td colspan="3" style="padding:0px;">
+                                        <table class="table" style="margin-bottom:0px;">
+                                            <tr class="comp">
+                                                <td class="comp" width="200px">@competency.TafeCompCode</td>
+                                                <td class="comp">@competency.Competency.CompetencyName</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                }
+                                }
+                                }
+                                }
+                                else
+                                {
+                                <h2>No Subjects</h2>
+                                }
+</div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        @*<td class="subject" width="200px">@subject.Subject.SubjectCode</td>
+                        <td class="subject">@subject.Subject.SubjectDescription</td>
+                        <td class="subject">@subject.CompTypeCode</td>*@
+                    @*</tr>
+                    
+                                        if (subject.Subject.Competencies.Count > 0)
+                                        {
+                                        foreach (var competency in subject.Subject.Competencies)
+                                        {
                                         <tr style="padding:0px;">
                                             <td colspan="3" style="padding:0px;">
                                                 <table class="table" style="margin-bottom:0px;">
@@ -74,15 +170,16 @@
                                             </td>
                                         </tr>
 
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            <h2>No Subjects</h2>
-                        }
-                    </table>
+                                        }
+                                        }
+                                        }
+                                        }
+                                        else
+                                        {
+                                        <h2>No Subjects</h2>
+                                        }
+                                    
+</table>
                 </td>
                 <td>
                     <table class="table">
@@ -108,7 +205,7 @@
             </tr>
         </table>
 
-    </fieldset>
+    </fieldset>*@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.QualCode }) |
