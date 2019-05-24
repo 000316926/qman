@@ -432,6 +432,8 @@
     <Content Include="Views\qualifications1\Details.cshtml" />
     <Content Include="Views\qualifications1\Edit.cshtml" />
     <Content Include="Views\qualifications1\Index.cshtml" />
+    <Content Include="Views\qualifications1\DeleteSubject.cshtml" />
+    <Content Include="Views\qualifications1\AddSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,30 @@
+﻿@model QMAN.qualification
+    @{
+    ViewBag.Title = "AddSubject";
+}
+
+<h2>Add Subject</h2>
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        {
+            if (Model.subject_qualification.Count > 0)
+            {
+                foreach (var subject_qual in Model.subject_qualification)
+                {
+                    <div class="form-actions no-color">
+                    @Html.DropDownListFor(s => subject_qual.SubjectCode, new SelectList(subject_qual.SubjectCode, "Value", "Text"), new { @class = "form-control" });
+                    <input type="submit" value="Delete" class="btn btn-primary" /> |
+                    @Html.ActionLink("Cancel", "Edit", new { id = Model.QualCode })
+                    </div>
+                }
+            }
+            
+        }
+    }
+
+    }
+</div>
+

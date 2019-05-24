@@ -152,7 +152,47 @@ namespace QMAN.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult DeleteSubject(string QualCode, string SubjectCode)
+        {
+            if (QualCode == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            qualification qualification = db.qualification.Find(QualCode);
+            if (qualification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(qualification);
+        }
 
+        [HttpPost, ActionName("DeleteSubject")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteSubjectConfirmed(string QualCode, string SubjectCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+            subject_qualification subject = qualification.subject_qualification.First(s => s.SubjectCode == SubjectCode);
+
+            db.qualification.Find(QualCode).subject_qualification.Remove(subject);
+            db.SaveChanges();
+            return RedirectToAction("Edit", "qualification", new { id = QualCode });
+
+        }
+
+        public ActionResult AddSubject(string QualCode)
+        {
+            if (QualCode == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            qualification qualification = db.qualification.Find(QualCode);
+            if (qualification == null)
+            {
+                return HttpNotFound();
+            }
+            return View(qualification);
+
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
