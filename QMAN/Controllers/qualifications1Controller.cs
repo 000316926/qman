@@ -65,16 +65,43 @@ namespace QMAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            qualification qualification = db.qualification.Find(id);
-
-            IEnumerable<competency_qualification> compquals = db.competency_qualification.Where(cq => cq.QualCode == qualification.QualCode);
-            ViewBag.compquals = compquals;            
+            qualification qualification = db.qualification.Find(id); 
 
             if (qualification == null)
             {
                 return HttpNotFound();
             }
             return View(qualification);
+        }
+
+        public void Close()
+        {
+            db.Database.Connection.Close();
+        }
+        IEnumerable<competency_qualification> GetCompQualForQual(string qualCode)
+        {
+            return db.competency_qualification.Where(cq => cq.QualCode == qualCode);
+        }
+
+        public IEnumerable<competency> GetCompForQualSubject(string qualCode, string subjectCode)
+        {
+            IEnumerable<competency_qualification> compquals = GetCompQualForQual(qualCode).ToList();
+            //db.Database.Connection.Close();
+            List<competency> retList = new List<competency>();
+
+            foreach (var compqual in compquals)
+            {
+                //db.Database.Connection.Close();
+                //db.Database.Connection.Open();
+                competency comp = db.competency.Where(c => c.NationalCompCode == compqual.NationalCompCode).Include("subject").First();
+                subject sub = comp.subject.FirstOrDefault(s => s.SubjectCode == subjectCode);
+                if (sub != null)
+                    retList.Add(comp);
+                //db.Database.Connection.Close();
+            }
+
+            //db.Database.Connection.Close();
+            return retList;
         }
 
         public competency_qualification GetCompQualForComp(string qualCode, string nationalCompCode)

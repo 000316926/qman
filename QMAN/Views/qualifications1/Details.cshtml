@@ -51,7 +51,6 @@
                             <th>Type</th>
                         </tr>
 
-
                         @if (Model.subject_qualification.Count > 0)
                         {
                             foreach (var subject_qual in Model.subject_qualification)
@@ -76,12 +75,14 @@
 
                                     </td>
                                 </tr>
-                                if (subject_qual.subject != null && subject_qual.subject.competency != null)
-                                {
-                                    if (subject_qual.subject.competency.Count > 0)
-                                    {
-                                        foreach (var competency in subject_qual.subject.competency)
-                                        {
+                                            if (subject_qual.subject != null && subject_qual.subject.competency != null)
+                                            {
+                                                var comps = ((QMAN.Controllers.qualifications1Controller)this.ViewContext.Controller).GetCompForQualSubject(Model.QualCode, subject_qual.SubjectCode);
+                                               
+                                                if (comps.Count() > 0)
+                                                {
+                                                    foreach (var competency in comps)
+                                                    {
                                             <tr class="hiddenRow">
                                                 <td class="hiddenRow col-6">
 
@@ -109,9 +110,8 @@
                                                                         if (compqual != null)
                                                                         {
                                                                             @compqual.competency_type.CompTypeDescription;
-                                                                            @compqual.CompTypeCode
                                                                         }
-                                                                    }
+                        }
                                                                 </div>
                                                             </td>
                                                         </tr>
