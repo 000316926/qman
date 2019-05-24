@@ -66,12 +66,29 @@ namespace QMAN.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             qualification qualification = db.qualification.Find(id);
+
+            IEnumerable<competency_qualification> compquals = db.competency_qualification.Where(cq => cq.QualCode == qualification.QualCode);
+            ViewBag.compquals = compquals;            
+
             if (qualification == null)
             {
                 return HttpNotFound();
             }
             return View(qualification);
         }
+
+        public competency_qualification GetCompQualForComp(string qualCode, string nationalCompCode)
+        {            
+            try
+            {
+                return db.competency_qualification.First(cq => cq.QualCode == qualCode && cq.NationalCompCode == nationalCompCode);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+            
 
         // GET: qualifications1/Create
         public ActionResult Create()
