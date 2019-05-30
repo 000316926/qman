@@ -20,8 +20,7 @@ namespace QMAN.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("MySqlConnection", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
@@ -29,11 +28,5 @@ namespace QMAN.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<QMAN.Models.Qualification> Qualifications { get; set; }
-
-        public System.Data.Entity.DbSet<QMAN.Models.Subject> Subjects { get; set; }
-
-        public System.Data.Entity.DbSet<QMAN.Models.StudyPlanQualification> StudyPlanQualifications { get; set; }
     }
 }

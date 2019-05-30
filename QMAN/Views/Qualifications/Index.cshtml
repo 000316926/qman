@@ -1,14 +1,14 @@
-﻿@model IEnumerable<QMAN.Models.Qualification>
+﻿@model IEnumerable<QMAN.Models.qualification>
 
 @{
     ViewBag.Title = "Qualifications";
 }
 
-<h2>Qualifications</h2>
+<h2>Index</h2>
 
 @*<p>
         @Html.ActionLink("Create New", "Create")
-    </p>*@
+</p>*@
 @using (Html.BeginForm())
 {
 <div class="row">
@@ -35,7 +35,7 @@
     </thead>
 
     @foreach (var item in Model)
-                {
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.QualName)
@@ -48,7 +48,7 @@
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.QualCode }, new {@class = "btn btn-danger" })
+                @Html.ActionLink("Details", "Details", new { id = item.QualCode }, new { @class = "btn btn-danger" })
                 @*@Html.ActionLink("Delete", "Delete", new { id=item.QualCode })*@
             </td>
         </tr>

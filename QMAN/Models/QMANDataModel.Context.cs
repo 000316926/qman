@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Data.Entity;

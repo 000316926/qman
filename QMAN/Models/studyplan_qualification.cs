@@ -7,24 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class day_of_week
+    public partial class studyplan_qualification
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public day_of_week()
+        public studyplan_qualification()
         {
-            this.crn_session_timetable = new HashSet<crn_session_timetable>();
+            this.studyplan_subject = new HashSet<studyplan_subject>();
         }
     
-        public int DayCode { get; set; }
-        public string DayShortName { get; set; }
-        public string DayLongName { get; set; }
+        public string StudyPlanCode { get; set; }
+        public string QualCode { get; set; }
+        public int Priority { get; set; }
     
+        public virtual qualification qualification { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<crn_session_timetable> crn_session_timetable { get; set; }
+        public virtual ICollection<studyplan_subject> studyplan_subject { get; set; }
     }
 }

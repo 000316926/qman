@@ -7,35 +7,35 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class qualification
+    public partial class term_datetime
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public qualification()
+        public term_datetime()
         {
+            this.crn_detail = new HashSet<crn_detail>();
+            this.crn_session_timetable = new HashSet<crn_session_timetable>();
+            this.student_grade = new HashSet<student_grade>();
             this.student_studyplan = new HashSet<student_studyplan>();
-            this.studyplan_qualification = new HashSet<studyplan_qualification>();
-            this.subject_qualification = new HashSet<subject_qualification>();
         }
     
-        public string QualCode { get; set; }
-        public string NationalQualCode { get; set; }
-        public string TafeQualCode { get; set; }
-        public string QualName { get; set; }
-        public int TotalUnits { get; set; }
-        public int CoreUnits { get; set; }
-        public int ElectedUnits { get; set; }
-        public int ReqListedElectedUnits { get; set; }
+        public int TermCode { get; set; }
+        public int TermYear { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public System.DateTime EndDate { get; set; }
+        public int SemesterCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<crn_detail> crn_detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<crn_session_timetable> crn_session_timetable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<student_grade> student_grade { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<student_studyplan> student_studyplan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<studyplan_qualification> studyplan_qualification { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<subject_qualification> subject_qualification { get; set; }
     }
 }

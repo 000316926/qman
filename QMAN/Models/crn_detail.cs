@@ -7,35 +7,42 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class term_datetime
+    public partial class crn_detail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public term_datetime()
+        public crn_detail()
         {
-            this.crn_detail = new HashSet<crn_detail>();
             this.crn_session_timetable = new HashSet<crn_session_timetable>();
             this.student_grade = new HashSet<student_grade>();
-            this.student_studyplan = new HashSet<student_studyplan>();
         }
     
-        public int TermCode { get; set; }
-        public int TermYear { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public int SemesterCode { get; set; }
+        public string CRN { get; set; }
+        public string TafeCompCode { get; set; }
+        public int TermCodeStart { get; set; }
+        public int TermYearStart { get; set; }
+        public int TermCodeEnd { get; set; }
+        public int TermYearEnd { get; set; }
+        public string SubjectCode { get; set; }
+        public string CampusCode { get; set; }
+        public string LecturerID { get; set; }
+        public string DepartmentCode { get; set; }
+        public System.DateTime FreezeDate { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<crn_detail> crn_detail { get; set; }
+        public virtual campus campus { get; set; }
+        public virtual competency competency { get; set; }
+        public virtual department department { get; set; }
+        public virtual lecturer lecturer { get; set; }
+        public virtual subject subject { get; set; }
+        public virtual term_datetime term_datetime { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<crn_session_timetable> crn_session_timetable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<student_grade> student_grade { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<student_studyplan> student_studyplan { get; set; }
     }
 }

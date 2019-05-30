@@ -7,25 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class lecturer
+    public partial class day_of_week
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public lecturer()
+        public day_of_week()
         {
-            this.crn_detail = new HashSet<crn_detail>();
+            this.crn_session_timetable = new HashSet<crn_session_timetable>();
         }
     
-        public string LecturerID { get; set; }
-        public string GivenName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
+        public int DayCode { get; set; }
+        public string DayShortName { get; set; }
+        public string DayLongName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<crn_detail> crn_detail { get; set; }
+        public virtual ICollection<crn_session_timetable> crn_session_timetable { get; set; }
     }
 }

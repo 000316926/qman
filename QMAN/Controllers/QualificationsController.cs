@@ -6,27 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using QMAN;
 using QMAN.Models;
 
 namespace QMAN.Controllers
 {
     public class QualificationsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private admin_it_studies_devEntities db = new admin_it_studies_devEntities();
 
-        // GET: Qualifications
+        // GET: qualifications1
         public ActionResult Index(string searchString, string sortOrder)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.Code1Parm = sortOrder == "NationalCode" ? "natcode_desc" : "NationalCode";
             ViewBag.Code2Parm = sortOrder == "TafeCode" ? "tafecode_desc" : "TafeCode";
 
-            IEnumerable<Qualification> quals = db.Qualifications;
+            IEnumerable<qualification> quals = db.qualification;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                quals = db.Qualifications.Where(q => q.QualName.Contains(searchString) || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));                
-                //quals = db.Qualifications.Where(q => q.QualName.Contains(searchString));// || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));
+                quals = db.qualification.Where(q => q.QualName.Contains(searchString) || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));
             }
 
             switch (sortOrder)
@@ -51,19 +51,20 @@ namespace QMAN.Controllers
                     break;
             }
 
-            ViewResult vr1 = View(quals.ToList<Qualification>());
+            ViewResult vr1 = View(quals.ToList<qualification>());
             //vr1.ViewName = "Index"; // - FORCE FAILURE FOR TEST
             return vr1;
         }
 
-        // GET: Qualifications/Details/5
+        // GET: qualifications1/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Qualification qualification = db.Qualifications.Find(id);
+            qualification qualification = db.qualification.Find(id); 
+
             if (qualification == null)
             {
                 return HttpNotFound();
@@ -71,22 +72,61 @@ namespace QMAN.Controllers
             return View(qualification);
         }
 
-        // GET: Qualifications/Create
+        public void Close()
+        {
+            db.Database.Connection.Close();
+        }
+        IEnumerable<competency_qualification> GetCompQualForQual(string qualCode)
+        {
+            return db.competency_qualification.Where(cq => cq.QualCode == qualCode).ToList<competency_qualification>();
+        }
+
+        public IEnumerable<competency> GetCompForQualSubject(string qualCode, string subjectCode)
+        {
+            IEnumerable<competency_qualification> compquals = GetCompQualForQual(qualCode).ToList();
+            List<competency> retList = new List<competency>();
+
+            foreach (var compqual in compquals)
+            {
+                competency comp = db.competency.Where(c => c.NationalCompCode == compqual.NationalCompCode).Include("subject").First();
+                subject sub = comp.subject.FirstOrDefault(s => s.SubjectCode == subjectCode);
+
+                if (sub != null)
+                    retList.Add(comp);
+            }
+            
+            return retList;
+        }
+
+        public competency_qualification GetCompQualForComp(string qualCode, string nationalCompCode)
+        {            
+            try
+            {
+                return db.competency_qualification.First(cq => cq.QualCode == qualCode && cq.NationalCompCode == nationalCompCode);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+            
+
+        // GET: qualifications1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Qualifications/Create
+        // POST: qualifications1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QualCode,NationalQualCode,TafeQualCode,QualName,TotalUnits,CoreUnits,ElectedUnits,ReqListedElectedUnits")] Qualification qualification)
+        public ActionResult Create([Bind(Include = "QualCode,NationalQualCode,TafeQualCode,QualName,TotalUnits,CoreUnits,ElectedUnits,ReqListedElectedUnits")] qualification qualification)
         {
             if (ModelState.IsValid)
             {
-                db.Qualifications.Add(qualification);
+                db.qualification.Add(qualification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -94,14 +134,14 @@ namespace QMAN.Controllers
             return View(qualification);
         }
 
-        // GET: Qualifications/Edit/5
+        // GET: qualifications1/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Qualification qualification = db.Qualifications.Find(id);
+            qualification qualification = db.qualification.Find(id);
             if (qualification == null)
             {
                 return HttpNotFound();
@@ -109,12 +149,12 @@ namespace QMAN.Controllers
             return View(qualification);
         }
 
-        // POST: Qualifications/Edit/5
+        // POST: qualifications1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QualCode,NationalQualCode,TafeQualCode,QualName,TotalUnits,CoreUnits,ElectedUnits,ReqListedElectedUnits")] Qualification qualification)
+        public ActionResult Edit([Bind(Include = "QualCode,NationalQualCode,TafeQualCode,QualName,TotalUnits,CoreUnits,ElectedUnits,ReqListedElectedUnits")] qualification qualification)
         {
             if (ModelState.IsValid)
             {
@@ -125,14 +165,14 @@ namespace QMAN.Controllers
             return View(qualification);
         }
 
-        // GET: Qualifications/Delete/5
+        // GET: qualifications1/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Qualification qualification = db.Qualifications.Find(id);
+            qualification qualification = db.qualification.Find(id);
             if (qualification == null)
             {
                 return HttpNotFound();
@@ -140,42 +180,15 @@ namespace QMAN.Controllers
             return View(qualification);
         }
 
-        // POST: Qualifications/Delete/5
+        // POST: qualifications1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Qualification qualification = db.Qualifications.Find(id);
-            db.Qualifications.Remove(qualification);
+            qualification qualification = db.qualification.Find(id);
+            db.qualification.Remove(qualification);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult DeleteSubject(string QualCode, string SubjectCode)
-        {
-            if (QualCode == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Qualification qualification = db.Qualifications.Find(QualCode);
-            if (qualification == null)
-            {
-                return HttpNotFound();
-            }
-            return View(qualification);
-        }
-
-        [HttpPost, ActionName("DeleteSubject")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteSubjectConfirmed(string QualCode, string SubjectCode)
-        {
-            Qualification qualification = db.Qualifications.Find(QualCode);
-            SubjectQualification subject = qualification.Subjects.First(s => s.SubjectCode == SubjectCode);
-
-            db.Qualifications.Find(QualCode).Subjects.Remove(subject);
-
-            db.SaveChanges();
-            return RedirectToAction("Edit", "Qualifications", new { id = QualCode } );
         }
 
         protected override void Dispose(bool disposing)

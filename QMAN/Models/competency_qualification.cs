@@ -7,22 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace QMAN
+namespace QMAN.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class student_grade
+    public partial class competency_qualification
     {
-        public string StudentID { get; set; }
-        public string CRN { get; set; }
-        public string TafeCompCode { get; set; }
-        public int TermCode { get; set; }
-        public int TermYear { get; set; }
-        public string Grade { get; set; }
-        public Nullable<System.DateTime> GradeDate { get; set; }
+        public string QualCode { get; set; }
+        public string NationalCompCode { get; set; }
+        public string CompTypeCode { get; set; }
     
-        public virtual crn_detail crn_detail { get; set; }
-        public virtual term_datetime term_datetime { get; set; }
+        public virtual competency_type competency_type { get; set; }
     }
 }

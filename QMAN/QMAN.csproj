@@ -225,103 +225,82 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="campus.cs">
+    <Compile Include="Models\campus.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="competency.cs">
+    <Compile Include="Models\competency.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="competency_qualification.cs">
+    <Compile Include="Models\competency_qualification.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="competency_type.cs">
+    <Compile Include="Models\competency_type.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\qualifications1Controller.cs" />
     <Compile Include="Controllers\QualificationsController.cs" />
-    <Compile Include="Controllers\StudyPlanController.cs" />
-    <Compile Include="Controllers\SubjectsController.cs" />
-    <Compile Include="crn_detail.cs">
+    <Compile Include="Models\crn_detail.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="crn_session_timetable.cs">
+    <Compile Include="Models\crn_session_timetable.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="day_of_week.cs">
+    <Compile Include="Models\day_of_week.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="department.cs">
+    <Compile Include="Models\department.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="lecturer.cs">
+    <Compile Include="Models\lecturer.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Campus.cs" />
-    <Compile Include="Models\Competency.cs" />
-    <Compile Include="Models\CompetencyType.cs" />
-    <Compile Include="Models\CrnDetail.cs" />
-    <Compile Include="Models\CrnSessionTimetable.cs" />
-    <Compile Include="Models\DayOfWeek.cs" />
-    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Qualification.cs" />
-    <Compile Include="Models\Student.cs" />
-    <Compile Include="Models\StudentGrade.cs" />
-    <Compile Include="Models\StudentStudyPlan.cs" />
-    <Compile Include="Models\StudyPlanQualification.cs" />
-    <Compile Include="Models\StudyPlanSubject.cs" />
-    <Compile Include="Models\Subject.cs" />
-    <Compile Include="Models\SubjectCompetency.cs" />
-    <Compile Include="Models\SubjectQualification.cs" />
-    <Compile Include="Models\TermDateTime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QMANDataModel.Context.cs">
+    <Compile Include="Models\QMANDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QMANDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="QMANDataModel.cs">
+    <Compile Include="Models\QMANDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="QMANDataModel.Designer.cs">
+    <Compile Include="Models\QMANDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QMANDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="qualification.cs">
+    <Compile Include="Models\qualification.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="student_grade.cs">
+    <Compile Include="Models\student_grade.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="student_studyplan.cs">
+    <Compile Include="Models\student_studyplan.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="studyplan_qualification.cs">
+    <Compile Include="Models\studyplan_qualification.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="studyplan_subject.cs">
+    <Compile Include="Models\studyplan_subject.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="subject.cs">
+    <Compile Include="Models\subject.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="subject_qualification.cs">
+    <Compile Include="Models\subject_qualification.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="term_datetime.cs">
+    <Compile Include="Models\term_datetime.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Tests\QMANTests.cs" />
@@ -334,12 +313,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="QMANDataModel.Context.tt">
+    <Content Include="Models\QMANDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QMANDataModel.edmx</DependentUpon>
       <LastGenOutput>QMANDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="QMANDataModel.tt">
+    <Content Include="Models\QMANDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QMANDataModel.edmx</DependentUpon>
       <LastGenOutput>QMANDataModel.cs</LastGenOutput>
@@ -351,11 +330,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="QMANDataModel.edmx">
+    <EntityDeploy Include="Models\QMANDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>QMANDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="QMANDataModel.edmx.diagram">
+    <Content Include="Models\QMANDataModel.edmx.diagram">
       <DependentUpon>QMANDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -416,22 +395,6 @@
     <Content Include="Views\Qualifications\Details.cshtml" />
     <Content Include="Views\Qualifications\Edit.cshtml" />
     <Content Include="Views\Qualifications\Index.cshtml" />
-    <Content Include="Views\Subjects\Create.cshtml" />
-    <Content Include="Views\Subjects\Delete.cshtml" />
-    <Content Include="Views\Subjects\Details.cshtml" />
-    <Content Include="Views\Subjects\Edit.cshtml" />
-    <Content Include="Views\Subjects\Index.cshtml" />
-    <Content Include="Views\Qualifications\DeleteSubject.cshtml" />
-    <Content Include="Views\StudyPlan\Create.cshtml" />
-    <Content Include="Views\StudyPlan\Delete.cshtml" />
-    <Content Include="Views\StudyPlan\Details.cshtml" />
-    <Content Include="Views\StudyPlan\Edit.cshtml" />
-    <Content Include="Views\StudyPlan\Index.cshtml" />
-    <Content Include="Views\qualifications1\Create.cshtml" />
-    <Content Include="Views\qualifications1\Delete.cshtml" />
-    <Content Include="Views\qualifications1\Details.cshtml" />
-    <Content Include="Views\qualifications1\Edit.cshtml" />
-    <Content Include="Views\qualifications1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
