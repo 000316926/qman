@@ -63,7 +63,9 @@ namespace QMAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            qualification qualification = db.qualification.Find(id); 
+
+            //qualification qualification = db.qualification.Find(id); 
+            qualification qualification = db.qualification.Include(q => q.subject_qualification.Select(sq => sq.subject)).FirstOrDefault(q => q.QualCode == id);
 
             if (qualification == null)
             {
@@ -81,6 +83,20 @@ namespace QMAN.Controllers
             return db.competency_qualification.Where(cq => cq.QualCode == qualCode).ToList<competency_qualification>();
         }
 
+        public bool IsCompInQual(string qualCode, string nationalCompCode)
+        {
+            try
+            {
+                competency_qualification compqual = db.competency_qualification.First(cq => cq.QualCode == qualCode && cq.NationalCompCode == nationalCompCode);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            
+        }
+
         public IEnumerable<competency> GetCompForQualSubject(string qualCode, string subjectCode)
         {
             IEnumerable<competency_qualification> compquals = GetCompQualForQual(qualCode).ToList();
@@ -88,7 +104,7 @@ namespace QMAN.Controllers
 
             foreach (var compqual in compquals)
             {
-                competency comp = db.competency.Where(c => c.NationalCompCode == compqual.NationalCompCode).Include("subject").First();
+                competency comp = db.competency.Include("subject").Where(c => c.NationalCompCode == compqual.NationalCompCode).First();
                 subject sub = comp.subject.FirstOrDefault(s => s.SubjectCode == subjectCode);
 
                 if (sub != null)

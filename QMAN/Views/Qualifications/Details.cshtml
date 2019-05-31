@@ -72,12 +72,14 @@
 
                                 if (subject_qual.subject != null && subject_qual.subject.competency != null)
                                 {
-                                    var comps = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompForQualSubject(Model.QualCode, subject_qual.SubjectCode);
-                                               
-                                    if (comps.Count() > 0)
+                                    //var comps = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompForQualSubject(Model.QualCode, subject_qual.SubjectCode);
+
+                                    //if (comps.Count() > 0)
+                                    //{
+                                    foreach (var competency in subject_qual.subject.competency)
                                     {
-                                        foreach (var competency in comps)
-                                        {
+                                        if(((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).IsCompInQual(Model.QualCode, competency.NationalCompCode))
+                                        { 
                                             <tr class="hiddenRow">
                                                 <td class="hiddenRow col-6">
                                                     <table class="hiddenRow">
@@ -99,13 +101,13 @@
                                                             </td>
                                                             <td>
                                                                 <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
-                                                                    @{
+                                                                    @*@{
                                                                         var compqual = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompQualForComp(Model.QualCode, competency.NationalCompCode);
                                                                         if (compqual != null)
                                                                         {
                                                                             @compqual.competency_type.CompTypeDescription;
                                                                         }
-                        }
+                                                                    }*@
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -113,11 +115,11 @@
 
                                                 </td>
                                             </tr>
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     </table>
                 </td>
             </tr>
@@ -125,10 +127,10 @@
     </fieldset>
     <script>
         $('.table .accordian').on('show.bs.collapse', function () {
-               $(this).closest("table")
-                   .find(".collapse.in")
-                   .not(this)
-                   .collapse('toggle')
+            $(this).closest("table")
+                .find(".collapse.in")
+                .not(this)
+                .collapse('toggle')
         })
     </script>
     <p>
