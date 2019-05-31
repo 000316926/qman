@@ -53,7 +53,7 @@
 
                         @if (Model.subject_qualification.Count > 0)
                         {
-                            foreach (var subject_qual in Model.subject_qualification)
+                            foreach (var subject_qual in Model.subject_qualification.OrderBy(sq => sq.SubjectCode))
                             {
                                 <tr class="accordion" data-toggle="collapse" data-target="#AA_@(subject_qual.SubjectCode)">
                                     <td class="card-header">
