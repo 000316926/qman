@@ -101,13 +101,13 @@
                                                             </td>
                                                             <td>
                                                                 <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
-                                                                    @*@{
+                                                                    @{
                                                                         var compqual = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompQualForComp(Model.QualCode, competency.NationalCompCode);
                                                                         if (compqual != null)
                                                                         {
                                                                             @compqual.competency_type.CompTypeDescription;
                                                                         }
-                                                                    }*@
+                                                                    }
                                                                 </div>
                                                             </td>
                                                         </tr>

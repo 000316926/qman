@@ -1,7 +1,7 @@
 ﻿@model QMAN.Models.qualification
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Qualification";
 }
 
 <h2>Edit</h2>
@@ -11,71 +11,100 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>qualification</h4>
+    <<div class="form-horizontal">
+        <h4>Qualification</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.QualCode)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NationalQualCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NationalQualCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NationalQualCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div>
+            <fieldset>
+                <legend>Subjects & Competencies</legend>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TafeQualCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TafeQualCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TafeQualCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <table class="table">
+                    <tr>
+                        <th width="200px">Subject/Comp Code</th>
+                        <th>Subject/Comp Name</th>
+                        <th>Type</th>
+                    </tr>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.QualName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QualName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QualName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    @if (Model.subject_qualification.Count > 0)
+                    {
+                        foreach (var subject_qual in Model.subject_qualification.OrderBy(sq => sq.SubjectCode))
+                        {
+                            <tr class="subject">
+                                <td class="subject" width="200px">@subject_qual.subject.SubjectCode</td>
+                                <td class="subject">@subject_qual.subject.SubjectDescription</td>
+                                <td class="subject">@subject_qual.UsageType</td>
+                                <td>@Html.ActionLink("Delete", "DeleteSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode })</td>
+                            </tr>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalUnits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalUnits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TotalUnits, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                            if (subject_qual.subject.competency.Count > 0)
+                            {
+                                foreach (var competency in subject_qual.subject.competency)
+                                {
+                                    if (((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).IsCompInQual(Model.QualCode, competency.NationalCompCode))
+                                    {
+                                        <tr style="padding:0px;">
+                                            <td colspan="3" style="padding:0px;">
+                                                <table class="table" style="margin-bottom:0px;">
+                                                    <tr class="comp">
+                                                        <td class="comp" width="200px">@competency.TafeCompCode</td>
+                                                        <td class="comp">@competency.CompetencyName</td>
+                                                        <td>
+                                                            @{
+                                                                var compqual = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompQualForComp(Model.QualCode, competency.NationalCompCode);
+                                                                if (compqual != null)
+                                                                {
+                                                                    @compqual.competency_type.CompTypeDescription;
+                                                                }
+                                                            }
+                                                        </td>
+                                                        <td>@Html.ActionLink("Delete", "DeleteCompetency", new { id = competency.TafeCompCode })</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                <h2> No Subjects </h2>
+                    }
+                </table>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CoreUnits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CoreUnits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CoreUnits, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <table class="table">
+                    <tr>
+                        <th>Study Plan</th>
+                    </tr>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ElectedUnits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ElectedUnits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ElectedUnits, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    @if (Model.studyplan_qualification.Count > 0)
+                    {
+                        foreach (var studyPlan in Model.studyplan_qualification)
+                        {
+                            <tr class="subject">
+                                <td class="subject" width="200px">@studyPlan.StudyPlanCode</td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "StudyPlan", new { id = studyPlan.StudyPlanCode }, null)
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <h2>No Study Plans</h2>
+                    }
+                </table>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReqListedElectedUnits, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReqListedElectedUnits, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReqListedElectedUnits, "", new { @class = "text-danger" })
-            </div>
+            </fieldset>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @*<input type="submit" value="Save" class="btn btn-default" />*@
             </div>
         </div>
     </div>
