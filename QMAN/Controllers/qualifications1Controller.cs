@@ -193,6 +193,20 @@ namespace QMAN.Controllers
             return View(qualification);
 
         }
+        [HttpPost, ActionName("AddSubject")]
+        [ValidateAntiForgeryToken]
+        public ViewResult DisplaySubjects()
+        {
+            IEnumerable<SelectListItem> items = db.subject.Select(s => new SelectListItem
+            {
+                Value = s.SubjectCode,
+                Text = s.SubjectCode
+            });
+            ViewBag.SubjectCode = items;
+            ViewData.Add("SubjectCode", items);
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
