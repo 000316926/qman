@@ -1,0 +1,136 @@
+﻿@model QMAN.qualification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Qualification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Qualification
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QualName)
+        </dd>
+
+        <dt>
+            National Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NationalQualCode)
+        </dd>
+
+        <dt>
+            TAFE Qualification Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TafeQualCode)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <fieldset>
+
+        <legend>Subjects & Competencies</legend>
+        <table class="table">
+            <tr>
+                <td>
+
+                    <table class="table">
+                        <tr>
+                            <th width="200px">Subject/Comp Code</th>
+                            <th>Subject/Comp Name</th>
+                            <th>Type</th>
+                        </tr>
+
+
+                        @if (Model.subject_qualification.Count > 0)
+                        {
+                            foreach (var subject_qual in Model.subject_qualification)
+                            {
+
+                                <tr class="accordion" data-toggle="collapse" data-target="#AA_@(subject_qual.SubjectCode)">
+
+                                    <td class="card-header">
+
+                                        @subject_qual.SubjectCode
+
+                                    </td>
+                                    <td class="card-header">
+                                        @if (subject_qual.subject != null)
+                                        {
+                                            @subject_qual.subject.SubjectDescription
+                                        }
+                                    </td>
+                                    <td class="card-header">
+
+                                        @subject_qual.UsageType
+
+                                    </td>
+                                </tr>
+                                if (subject_qual.subject != null && subject_qual.subject.competency != null)
+                                {
+                                    if (subject_qual.subject.competency.Count > 0)
+                                    {
+                                        foreach (var competency in subject_qual.subject.competency)
+                                        {
+                                            <tr class="hiddenRow">
+                                                <td class="hiddenRow col-6">
+
+                                                    <table class="hiddenRow">
+                                                        <tr>
+                                                            <td>
+                                                                <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                    @competency.NationalCompCode
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                    @competency.TafeCompCode
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                    @competency.CompetencyName
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <script>
+        $('.table .accordian').on('show.bs.collapse', function () {
+               $(this).closest("table")
+                   .find(".collapse.in")
+                   .not(this)
+                   .collapse('toggle')
+        })
+    </script>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.QualCode }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

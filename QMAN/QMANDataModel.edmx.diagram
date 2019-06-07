@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e1401051ddc4364a2ad8bd30a073c99" Name="Diagram1">
+        <EntityTypeShape EntityType="admin_it_studies_devModel.campus" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.competency" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.competency_qualification" Width="2.125" PointX="9.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.competency_type" Width="1.5" PointX="6.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.crn_detail" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.crn_session_timetable" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.day_of_week" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.department" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.lecturer" Width="1.5" PointX="3" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.qualification" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.student_grade" Width="1.5" PointX="10.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.student_studyplan" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.studyplan_qualification" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.studyplan_subject" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.subject" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.subject_qualification" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="admin_it_studies_devModel.term_datetime" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_CampusCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_Session_CampusCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_TafeCompCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.fk_competency_qualification_competency_type1" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_DepartmentCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_LecturerID" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_SubjectCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_CRNDetail_TermStart" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_Session_CRN" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudentGrade_CRN" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_Session_DayCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_Session_TermStart" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudentStudyplan_QualCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudyPlanQual_QualCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_SubjQual_QualCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudentGrade_TermStart" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudentStudyplan_TermStart" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudyPlanSubject_StudyPlanCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_StudyPlanSubject_SubjectCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.FK_SubjQual_SubjectCode" ManuallyRouted="false" />
+        <AssociationConnector Association="admin_it_studies_devModel.subject_competency" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

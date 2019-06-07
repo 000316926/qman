@@ -15,9 +15,35 @@ namespace QMAN.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Subjects
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder)
         {
-            ViewResult vr = View(db.Subjects.ToList());
+            ViewBag.CodeSortParm = String.IsNullOrEmpty(sortOrder) ? "code_desc" : "";
+            ViewBag.DescriptionSortParm = sortOrder == "Description" ? "desc_desc" : "Description";
+
+            IEnumerable<Subject> Subjects = db.Subjects.ToList();
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                Subjects = db.Subjects.Where(s => s.SubjectCode.Contains(searchString) || s.SubjectDescription.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "code_desc":
+                    Subjects = Subjects.OrderByDescending(s => s.SubjectCode);
+                    break;
+                case "desc_desc":
+                    Subjects = Subjects.OrderByDescending(s => s.SubjectDescription);
+                    break;
+                case "Description":
+                    Subjects = Subjects.OrderBy(s => s.SubjectDescription);
+                    break;
+                default:
+                    Subjects = Subjects.OrderBy(s => s.SubjectCode);
+                    break;
+            }
+
+            ViewResult vr = View(Subjects);
             vr.ViewName = "Index";
             return vr;
         }

@@ -13,52 +13,29 @@
 {
 <div class="row">
     <div class="input-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
-
-        @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Find by Name" })
+        @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Search" })
         <span class="input-group-btn ">
-            <button class="btn btn-danger" type="submit">Button</button>
+            <button class="btn btn-danger" type="submit">Search</button>
         </span>
     </div>
 </div>
-    @*<p>
-        Find by name: @Html.TextBox("SearchString", new { @class = "form-control" })
-        <button class=" btn btn-danger" type="submit">Search</button>
-
-    </p>*@
 }
 <table class="table">
     <thead>
         <tr>
-
-            <th class="">
-                Qualification Name
-                @*@Html.DisplayNameFor(model => model.QualName)*@
+            <th>
+                @Html.ActionLink("Qualification Name", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                National Qualification Code
-                @*@Html.DisplayNameFor(model => model.NationalQualCode)*@
+                @Html.ActionLink("National Qualification Code", "Index", new { sortOrder = ViewBag.Code1Parm })
             </th>
             <th>
-                TAFE Qualification Code
-                @*@Html.DisplayNameFor(model => model.TafeQualCode)*@
+                @Html.ActionLink("TAFE Qualification Code", "Index", new { sortOrder = ViewBag.Code2Parm })
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.TotalUnits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CoreUnits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ElectedUnits)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReqListedElectedUnits)
-            </th>*@
-            <th></th>
     </thead>
 
     @foreach (var item in Model)
-    {
+                {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.QualName)
@@ -69,18 +46,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TafeQualCode)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.TotalUnits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CoreUnits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ElectedUnits)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReqListedElectedUnits)
-                </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id=item.QualCode }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.QualCode }, new {@class = "btn btn-danger" })

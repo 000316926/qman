@@ -11,10 +11,12 @@ namespace QMAN.Models
     public class StudyPlanSubject
     {
         [Key]
+        [Column(Order =1)]
         public string StudyPlanCode { get; set; }
         [Key]
+        [Column(Order = 2)]
         public string SubjectCode { get; set; }
         public int TimingSemester { get; set; }
-        public int TimingSemeseterTerm { get; set; }
+        public int TimingSemesterTerm { get; set; }
     }
 }

@@ -14,5 +14,7 @@ namespace QMAN.Models
         public string StudyPlanCode { get; set; }
         public string QualCode { get; set; }
         public int Priority { get; set; }
+
+        public virtual ICollection<StudyPlanSubject> StudyPlanSubjects { get; set; }
     }
 }
