@@ -225,6 +225,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\SubjectsController.cs" />
     <Compile Include="Models\campus.cs">
       <DependentUpon>QMANDataModel.tt</DependentUpon>
     </Compile>
@@ -395,6 +396,11 @@
     <Content Include="Views\Qualifications\Details.cshtml" />
     <Content Include="Views\Qualifications\Edit.cshtml" />
     <Content Include="Views\Qualifications\Index.cshtml" />
+    <Content Include="Views\Subjects\Create.cshtml" />
+    <Content Include="Views\Subjects\Delete.cshtml" />
+    <Content Include="Views\Subjects\Details.cshtml" />
+    <Content Include="Views\Subjects\Edit.cshtml" />
+    <Content Include="Views\Subjects\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

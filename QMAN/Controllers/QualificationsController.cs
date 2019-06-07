@@ -22,11 +22,15 @@ namespace QMAN.Controllers
             ViewBag.Code1Parm = sortOrder == "NationalCode" ? "natcode_desc" : "NationalCode";
             ViewBag.Code2Parm = sortOrder == "TafeCode" ? "tafecode_desc" : "TafeCode";
 
-            IEnumerable<qualification> quals = db.qualification;
+            IEnumerable<qualification> quals;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 quals = db.qualification.Where(q => q.QualName.Contains(searchString) || q.NationalQualCode.Contains(searchString) || q.TafeQualCode.Contains(searchString));
+            }
+            else
+            {
+                 quals = db.qualification;
             }
 
             switch (sortOrder)

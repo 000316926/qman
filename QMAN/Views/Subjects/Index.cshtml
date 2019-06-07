@@ -1,0 +1,47 @@
+﻿@model IEnumerable<QMAN.Models.subject>
+
+@{
+    ViewBag.Title = "Subjects";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+<div class="row">
+    <div class="input-group col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Search" })
+        <span class="input-group-btn ">
+            <button class="btn btn-danger" type="submit">Search</button>
+        </span>
+    </div>
+</div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.ActionLink("Subject Code", "Index", new { sortOrder = ViewBag.Code1Parm })</th>
+            <th>@Html.ActionLink("Subject Description", "Index", new { sortOrder = ViewBag.Code2Parm })</th>
+        </tr>        
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SubjectCode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SubjectCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SubjectCode })
+        </td>
+    </tr>
+}
+
+</table>
