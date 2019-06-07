@@ -35,7 +35,7 @@
                             <tr class="accordion" data-toggle="collapse" data-target="#AA_@(subject_qual.SubjectCode)">
 
                                 <td class="card-header">@subject_qual.SubjectCode</td>
-                                <td class="card-header">@subject_qual.subject.SubjectDescription</td>
+                                <td class="card-header col-6">@subject_qual.subject.SubjectDescription</td>
                                 <td class="card-header">@subject_qual.UsageType</td>
                                 <td class="card-header">
                                     @Html.ActionLink("Add", "AddSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-primary" })
@@ -70,8 +70,19 @@
                                                                 @competency.CompetencyName
                                                             </div>
                                                         </td>
-                                                        <td>
+                                                    <td>
+                                                        <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                            @{
+                                                                var compqual = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompQualForComp(Model.QualCode, competency.NationalCompCode);
+                                                                if (compqual != null)
+                                                                {
+                                                                    @compqual.competency_type.CompTypeDescription;
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </td>
 
+                                                        <td>
                                                             <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
                                                                 @Html.ActionLink("Remove", "DeleteCompetency", new { id = competency.TafeCompCode }, new { @class = "btn btn-danger" })
                                                             </div>

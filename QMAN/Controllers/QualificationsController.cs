@@ -64,8 +64,8 @@ namespace QMAN.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //qualification qualification = db.qualification.Find(id); 
-            qualification qualification = db.qualification.Include(q => q.subject_qualification.Select(sq => sq.subject)).FirstOrDefault(q => q.QualCode == id);
+            qualification qualification = db.qualification.Find(id); 
+            //qualification qualification = db.qualification.Include(q => q.subject_qualification.Select(sq => sq.subject)).FirstOrDefault(q => q.QualCode == id);
 
             if (qualification == null)
             {
