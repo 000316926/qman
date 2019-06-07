@@ -1,7 +1,7 @@
 ﻿@model QMAN.Models.qualification
 
 @{
-    ViewBag.Title = "Edit Qualification";
+    ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
@@ -10,10 +10,9 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <<div class="form-horizontal">
-        <h4>Qualification</h4>
-        <hr />
+
+    <div class="form-horizontal">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.QualCode)
 
@@ -26,53 +25,71 @@
                         <th width="200px">Subject/Comp Code</th>
                         <th>Subject/Comp Name</th>
                         <th>Type</th>
+                        <th class="col-2">@Html.ActionLink("Add Subject", "AddSubject", new { QualCode = Model.QualCode }, new { @class = "btn btn-primary" })</th>
                     </tr>
 
                     @if (Model.subject_qualification.Count > 0)
+                {
+                    foreach (var subject_qual in Model.subject_qualification)
                     {
-                        foreach (var subject_qual in Model.subject_qualification.OrderBy(sq => sq.SubjectCode))
-                        {
-                            <tr class="subject">
-                                <td class="subject" width="200px">@subject_qual.subject.SubjectCode</td>
-                                <td class="subject">@subject_qual.subject.SubjectDescription</td>
-                                <td class="subject">@subject_qual.UsageType</td>
-                                <td>@Html.ActionLink("Delete", "DeleteSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode })</td>
+                            <tr class="accordion" data-toggle="collapse" data-target="#AA_@(subject_qual.SubjectCode)">
+
+                                <td class="card-header">@subject_qual.SubjectCode</td>
+                                <td class="card-header">@subject_qual.subject.SubjectDescription</td>
+                                <td class="card-header">@subject_qual.UsageType</td>
+                                <td class="card-header">
+                                    @Html.ActionLink("Add", "AddSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-primary" })
+
+
+                                    @Html.ActionLink("Remove", "DeleteSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-danger" })
+                                </td>
                             </tr>
 
-                            if (subject_qual.subject.competency.Count > 0)
+                            if (subject_qual.subject != null && subject_qual.subject.competency != null)
                             {
-                                foreach (var competency in subject_qual.subject.competency)
+                                if (subject_qual.subject.competency.Count > 0)
                                 {
-                                    if (((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).IsCompInQual(Model.QualCode, competency.NationalCompCode))
+                                    foreach (var competency in subject_qual.subject.competency)
                                     {
-                                        <tr style="padding:0px;">
-                                            <td colspan="3" style="padding:0px;">
-                                                <table class="table" style="margin-bottom:0px;">
-                                                    <tr class="comp">
-                                                        <td class="comp" width="200px">@competency.TafeCompCode</td>
-                                                        <td class="comp">@competency.CompetencyName</td>
+                                        <tr class="hiddenRow collapse" id="AA_@(subject_qual.SubjectCode)">
+                                            @*<td class="hiddenRow col-6">*@
+                                                @*<table class="hiddenRow">
+                                                    <tr>*@
                                                         <td>
-                                                            @{
-                                                                var compqual = ((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).GetCompQualForComp(Model.QualCode, competency.NationalCompCode);
-                                                                if (compqual != null)
-                                                                {
-                                                                    @compqual.competency_type.CompTypeDescription;
-                                                                }
-                                                            }
+                                                            <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                @competency.NationalCompCode
+                                                            </div>
                                                         </td>
-                                                        <td>@Html.ActionLink("Delete", "DeleteCompetency", new { id = competency.TafeCompCode })</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
+                                                        @*<td>
+                                                            <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                @competency.TafeCompCode
+                                                            </div>
+                                                        </td>*@
+                                                        <td>
+                                                            <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                @competency.CompetencyName
+                                                            </div>
+                                                        </td>
+                                                        <td>
+
+                                                            <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
+                                                                @Html.ActionLink("Remove", "DeleteCompetency", new { id = competency.TafeCompCode }, new { @class = "btn btn-danger" })
+                                                            </div>
+                                                        </td>
+                                                    @*</tr>
+                                                </table>*@
+                                            @*</td>*@
                                         </tr>
+
                                     }
                                 }
                             }
+
                         }
                     }
                     else
                     {
-                <h2> No Subjects </h2>
+                        <h2> No Subjects </h2>
                     }
                 </table>
 
@@ -81,14 +98,14 @@
                         <th>Study Plan</th>
                     </tr>
 
-                    @if (Model.studyplan_qualification.Count > 0)
+                    @if (Model.student_studyplan.Count > 0)
+                {
+                    foreach (var studyPlan in Model.student_studyplan)
                     {
-                        foreach (var studyPlan in Model.studyplan_qualification)
-                        {
                             <tr class="subject">
-                                <td class="subject" width="200px">@studyPlan.StudyPlanCode</td>
+                                <td class="subject" width="200px">@studyPlan.TermYearStart</td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", "StudyPlan", new { id = studyPlan.StudyPlanCode }, null)
+                                    @Html.ActionLink("Edit", "Edit", "StudyPlan", new { id = studyPlan.TermYearStart }, null)
                                 </td>
                             </tr>
                         }

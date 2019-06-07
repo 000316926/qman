@@ -78,22 +78,22 @@
                                     //{
                                     foreach (var competency in subject_qual.subject.competency)
                                     {
-                                        if(((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).IsCompInQual(Model.QualCode, competency.NationalCompCode))
-                                        { 
-                                            <tr class="hiddenRow">
-                                                <td class="hiddenRow col-6">
+                                        //if(((QMAN.Controllers.QualificationsController)this.ViewContext.Controller).IsCompInQual(Model.QualCode, competency.NationalCompCode))
+                                        //{ 
+                                            <tr class="hiddenRow collapse" id="AA_@(subject_qual.SubjectCode)">
+                                                @*<td class="hiddenRow col-6">
                                                     <table class="hiddenRow">
-                                                        <tr>
+                                                        <tr>*@
                                                             <td>
                                                                 <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
                                                                     @competency.NationalCompCode
                                                                 </div>
                                                             </td>
-                                                            <td>
+                                                            @*<td>
                                                                 <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
                                                                     @competency.TafeCompCode
                                                                 </div>
-                                                            </td>
+                                                            </td>*@
                                                             <td>
                                                                 <div class="accordion collapse card-body" id="AA_@(subject_qual.SubjectCode)">
                                                                     @competency.CompetencyName
@@ -110,12 +110,11 @@
                                                                     }
                                                                 </div>
                                                             </td>
-                                                        </tr>
+                                                        @*</tr>
                                                     </table>
-
-                                                </td>
+                                                </td>*@
                                             </tr>
-                                        }
+                                        //}
                                     }
                                 }
                             }
