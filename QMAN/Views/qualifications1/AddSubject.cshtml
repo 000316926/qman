@@ -12,19 +12,23 @@
         {
             if (Model.subject_qualification.Count > 0)
             {
-                foreach (var subject_qual in Model.subject_qualification)
-                {
-                    <div class="form-actions no-color">
-                        @Html.DropDownList("SubjectCode", "Select a Subject");
-                    <input type="submit" value="Delete" class="btn btn-primary" /> |
-                    @Html.ActionLink("Cancel", "Edit", new { id = Model.QualCode })
-                    </div>
-                }
+                <div class="form-actions no-color">
+                    <select>
+                        @foreach (var subject_qual in Model.subject_qualification)
+                        {
+                        <option>@subject_qual.SubjectCode</option>
+
+                        }
+                    </select>
+                    <input type="submit" value="Delete" class="btn btn-primary" /> 
+                    @Html.ActionLink("Cancel", "Edit", new { id = Model.SubjectCode })
+|
+                </div>
             }
-            
+
         }
     }
 
-    }
-</div>
+                    }
+                </div>
 
