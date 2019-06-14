@@ -17,8 +17,10 @@
                         <option>@subject.SubjectCode - @subject.SubjectDescription</option>
                     }
                 </select>
-                @Html.ActionLink("Add Subject", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" })
-                @Html.ActionLink("Cancel", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })
+                <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Add Subject</a>
+                <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-danger">Cancel</a>
+                @*@Html.ActionLink("Add Subject", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Cancel", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })*@
             </div>
         }
     }
