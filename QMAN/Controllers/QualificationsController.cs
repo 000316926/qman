@@ -122,7 +122,7 @@ namespace QMAN.Controllers
         {            
             try
             {
-                return db.competency_qualification.First(cq => cq.QualCode == qualCode && cq.NationalCompCode == nationalCompCode);
+                return db.competency_qualification.FirstOrDefault(cq => cq.QualCode == qualCode && cq.NationalCompCode == nationalCompCode);
             }
             catch
             {
@@ -209,6 +209,58 @@ namespace QMAN.Controllers
             db.qualification.Remove(qualification);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult AddSubject(string QualCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+
+            ViewBag.QualCode = QualCode;
+            ViewBag.QualName = qualification.QualName;
+            
+            var subs = db.subject;
+
+            ViewResult vr1 = View(subs.ToList<subject>());
+            return vr1;
+        }
+
+        public ActionResult AddCompetency(string QualCode, string CompCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+            competency comp = db.competency.Find(CompCode);
+
+            ViewBag.QualCode = QualCode;
+            ViewBag.QualName = qualification.QualName;
+            ViewBag.CompCode = CompCode;
+            ViewBag.CompName = comp.CompetencyName;
+            
+            return View();
+        }
+
+        public ActionResult RemoveCompetency(string QualCode, string CompCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+            competency comp = db.competency.Find(CompCode);
+
+            ViewBag.QualCode = QualCode;
+            ViewBag.QualName = qualification.QualName;
+            ViewBag.CompCode = CompCode;
+            ViewBag.CompName = comp.CompetencyName;
+
+            return View();
+        }
+
+        public ActionResult RemoveSubject(string QualCode, string SubjectCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+            subject sub = db.subject.Find(SubjectCode);
+
+            ViewBag.QualCode = QualCode;
+            ViewBag.QualName = qualification.QualName;
+            ViewBag.SubjectCode = SubjectCode;
+            ViewBag.subjectName = sub.SubjectDescription;
+
+            return View();
         }
 
         protected override void Dispose(bool disposing)

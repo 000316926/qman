@@ -1,0 +1,9 @@
+﻿@model QMAN.Models.subject
+@{
+    ViewBag.Title = "Remove Subject";
+}
+
+<h2>Remove Subject</h2>
+<h3>@ViewBag.QualName</h3>
+<p>Are you sure you want to remove @ViewBag.SubjectCode - @ViewBag.SubjectName from @ViewBag.QualName</p>
+@Html.ActionLink("Yes", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" }) @Html.ActionLink("No", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })

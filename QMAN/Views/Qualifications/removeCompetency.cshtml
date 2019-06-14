@@ -1,0 +1,9 @@
+﻿@model QMAN.Models.competency
+@{
+    ViewBag.Title = "Remove Competency";
+}
+
+<h2>Remove Competency</h2>
+<h3>@ViewBag.QualName</h3>
+<p>Are you sure you want to remove @ViewBag.CompCode - @ViewBag.CompName from @ViewBag.QualName</p>
+@Html.ActionLink("Yes", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" }) @Html.ActionLink("No", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })

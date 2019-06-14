@@ -38,8 +38,7 @@
                                 <td class="card-header">@subject_qual.subject.SubjectDescription</td>
                                 <td class="card-header">@subject_qual.UsageType</td>
                                 <td class="card-header">
-                                    @Html.ActionLink("Add", "AddSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-primary" })
-                                    @Html.ActionLink("Remove", "DeleteSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-danger" })
+                                    @Html.ActionLink("Remove Subject", "RemoveSubject", new { QualCode = Model.QualCode, SubjectCode = subject_qual.SubjectCode }, new { @class = "btn btn-danger" })
                                 </td>
                             </tr>
 
@@ -61,7 +60,16 @@
                                                     }
                                                 }
                                             </td>
-                                            <td>@Html.ActionLink("Remove", "DeleteCompetency", new { id = competency.TafeCompCode }, new { @class = "btn btn-danger" })</td>
+                                            <td>
+                                                @if (compqual != null)
+                                                {
+                                                    @Html.ActionLink("Remove", "RemoveCompetency", new { CompCode = competency.TafeCompCode, QualCode = Model.QualCode }, new { @class = "btn btn-danger" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("Add", "AddCompetency", new { CompCode = competency.TafeCompCode, QualCode = Model.QualCode }, new { @class = "btn btn-primary" })
+                                                }
+                                            </td>
                                         </tr>
 
                                     }

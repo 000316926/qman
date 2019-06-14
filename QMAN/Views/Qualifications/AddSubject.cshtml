@@ -1,0 +1,26 @@
+﻿@model IEnumerable<QMAN.Models.subject>
+@{
+    ViewBag.Title = "Add Subject";
+}
+
+<h2>Add Subject</h2>
+<h3>@ViewBag.QualName</h3>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        {
+            <div class="form-actions no-color">
+                <select>
+                    @foreach (var subject in Model)
+                    {
+                        <option>@subject.SubjectCode - @subject.SubjectDescription</option>
+                    }
+                </select>
+                @Html.ActionLink("Add Subject", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Cancel", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })
+            </div>
+        }
+    }
+</div>
+
