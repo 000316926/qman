@@ -6,4 +6,12 @@
 <h2>Add Competency</h2>
 <h3>@ViewBag.QualName</h3>
 <p>Are you sure you want to add @ViewBag.CompCode - @ViewBag.CompName to @ViewBag.QualName</p>
+<select>
+    <option>Core</option>
+    <option>Core for App Stream in C3</option>
+    <option>Core for Support</option>
+    <option>Elective</option>
+    <option>Listed Elective</option>
+    <option>Vocational Placement</option>
+</select>
 @Html.ActionLink("Yes", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" }) @Html.ActionLink("No", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })
