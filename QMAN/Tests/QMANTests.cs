@@ -14,35 +14,24 @@ namespace QMAN.Tests
     public class QMANTests
     {
         [Test]
-        public void TestQualificationController()
-        {
-            var obj = new QualificationsController();
-
-            var result = obj.Index("", "") as ViewResult;
-
-            var expected = "Index";
-
-            Assert.AreEqual(expected, result.ViewName);
-        }
-
-        [Test]
-        public void TestSubjectController()
-        {
-            //var obj = new SubjectsController();
-
-            //var result = obj.Index("", "") as ViewResult;
-
-            //var expected = "Index";
-
-            //Assert.AreEqual(expected, result.ViewName);
-        }
-
-        [Test]
         public void TestDatabase()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            //Assert.IsInstanceOf<List<Qualification>>(db.Qualifications.ToList());
+            admin_it_studies_devEntities db = new admin_it_studies_devEntities();
+            Assert.IsNotNull(db.Database);            
         } 
+
+        [Test]
+        public void TestGetQualifications()
+        {
+            admin_it_studies_devEntities db = new admin_it_studies_devEntities();
+            Assert.IsNotNull(db.qualification);
+        }
+
+        [Test]
+        public void TestGetSubject()
+        {
+            admin_it_studies_devEntities db = new admin_it_studies_devEntities();
+            Assert.IsNotNull(db.subject.Find("3PRJ"));
+        }
     }
 }
