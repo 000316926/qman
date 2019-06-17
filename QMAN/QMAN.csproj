@@ -405,6 +405,7 @@
     <Content Include="Views\Qualifications\AddCompetency.cshtml" />
     <Content Include="Views\Qualifications\RemoveCompetency.cshtml" />
     <Content Include="Views\Qualifications\RemoveSubject.cshtml" />
+    <Content Include="Views\Qualifications\ChangeCompetency.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

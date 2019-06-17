@@ -1,0 +1,18 @@
+﻿@model QMAN.Models.competency
+@{
+    ViewBag.Title = "Change Competency";
+}
+
+<h2>Change Competency</h2>
+<h3>@ViewBag.QualName</h3>
+<p>Are you sure you want to change @ViewBag.CompCode - @ViewBag.CompName to @ViewBag.QualName</p>
+<select>
+    <option>Core</option>
+    <option>Core for App Stream in C3</option>
+    <option>Core for Support</option>
+    <option>Elective</option>
+    <option>Listed Elective</option>
+    <option>Vocational Placement</option>
+</select>
+<a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-primary">Yes</a> <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-danger">No</a>
+@*@Html.ActionLink("Yes", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-primary" }) @Html.ActionLink("No", "Edit", new { id = ViewBag.QualCode }, new { @class = "btn btn-danger" })*@

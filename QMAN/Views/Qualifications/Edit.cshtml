@@ -63,6 +63,7 @@
                                             <td>
                                                 @if (compqual != null)
                                                 {
+                                                    @Html.ActionLink("Change", "ChangeCompetency", new { CompCode = competency.TafeCompCode, QualCode = Model.QualCode }, new { @class = "btn btn-primary" })
                                                     @Html.ActionLink("Remove", "RemoveCompetency", new { CompCode = competency.TafeCompCode, QualCode = Model.QualCode }, new { @class = "btn btn-danger" })
                                                 }
                                                 else

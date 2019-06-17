@@ -250,6 +250,19 @@ namespace QMAN.Controllers
             return View();
         }
 
+        public ActionResult ChangeCompetency(string QualCode, string CompCode)
+        {
+            qualification qualification = db.qualification.Find(QualCode);
+            competency comp = db.competency.Find(CompCode);
+
+            ViewBag.QualCode = QualCode;
+            ViewBag.QualName = qualification.QualName;
+            ViewBag.CompCode = CompCode;
+            ViewBag.CompName = comp.CompetencyName;
+
+            return View();
+        }
+
         public ActionResult RemoveSubject(string QualCode, string SubjectCode)
         {
             qualification qualification = db.qualification.Find(QualCode);
