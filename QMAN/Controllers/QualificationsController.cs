@@ -146,8 +146,8 @@ namespace QMAN.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.qualification.Add(qualification);
-                db.SaveChanges();
+                //db.qualification.Add(qualification);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -178,8 +178,8 @@ namespace QMAN.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(qualification).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(qualification).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(qualification);
@@ -205,9 +205,9 @@ namespace QMAN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            qualification qualification = db.qualification.Find(id);
-            db.qualification.Remove(qualification);
-            db.SaveChanges();
+            //qualification qualification = db.qualification.Find(id);
+            //db.qualification.Remove(qualification);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 

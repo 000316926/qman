@@ -85,8 +85,8 @@ namespace QMAN.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.subject.Add(subject);
-                db.SaveChanges();
+                //db.subject.Add(subject);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -117,8 +117,8 @@ namespace QMAN.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subject).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(subject).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(subject);
@@ -144,9 +144,9 @@ namespace QMAN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            subject subject = db.subject.Find(id);
-            db.subject.Remove(subject);
-            db.SaveChanges();
+            //subject subject = db.subject.Find(id);
+            //db.subject.Remove(subject);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
